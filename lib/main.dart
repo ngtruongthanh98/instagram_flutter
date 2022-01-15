@@ -14,7 +14,8 @@ void main() async {
         apiKey: 'AIzaSyBFiKz30seMygo_kls9yjM2tLmAdotbLJg', 
         appId: '1:380758044921:web:85f698114545afecaa7228',        
         messagingSenderId: '380758044921', 
-        projectId: 'instagram-clone-flutter-dbe88'
+        projectId: 'instagram-clone-flutter-dbe88',
+        storageBucket: 'instagram-clone-flutter-dbe88.appspot.com'
       )
     );
   } else {
