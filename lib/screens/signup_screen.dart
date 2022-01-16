@@ -50,7 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   CircleAvatar(
                     radius: 64,
                     backgroundImage: NetworkImage(
-                        'https://i.pinimg.com/564x/71/42/cd/7142cd32e302356e7d8425166080f6e8.jpg'
+                      'https://i.pinimg.com/564x/71/42/cd/7142cd32e302356e7d8425166080f6e8.jpg'
                     ),
                   ),
                   Positioned(
