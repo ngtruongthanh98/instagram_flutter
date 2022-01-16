@@ -24,7 +24,8 @@ class AuthMethods {
           bio.isNotEmpty ||
           file != null) {
         // Register user
-        UserCredential cred = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+        UserCredential cred = await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
 
         print(cred.user!.uid);
         // Add user details to database
