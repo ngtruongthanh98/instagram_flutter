@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_flutter/resources/storage_methods.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -28,6 +29,10 @@ class AuthMethods {
             email: email, password: password);
 
         print(cred.user!.uid);
+
+        String photoUrl = await StorageMethods()
+            .uploadImageToStorage('profilePics', file, false);
+
         // Add user details to database
         await _firestore.collection('users').doc(cred.user!.uid).set({
           'username': username,
@@ -36,9 +41,20 @@ class AuthMethods {
           'bio': bio,
           'followers': [],
           'following': [],
+          'photoUrl': photoUrl,
         });
 
         res = "Success";
+      }
+    } on FirebaseAuthException catch (err) {
+      if (err.code == 'invalid-email') {
+        res = 'The email is badly formatted';
+      } else if (err.code == 'email-already-in-use') {
+        res = 'The email is already in use';
+      } else if (err.code == 'weak-password') {
+        res = 'Password should be at least 6 characters';
+      } else {
+        res = err.code;
       }
     } catch (err) {
       res = err.toString();
